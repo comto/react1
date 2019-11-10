@@ -1,4 +1,5 @@
 import React from 'react'
+import AppHeader from './AppHeader.js'
 import AppList from './AppList.js'
 import AppForm from './AppForm.js'
 import AppFooter from './AppFooter.js'
@@ -24,6 +25,7 @@ class App extends React.Component{
 
         return (
             <div className="ui comments">
+                <AppHeader />
                 <h1>My Todo List with React</h1>
                 <AppForm AddTodoItem={this.OnAddTodoItem.bind(this)}/>
                 <AppList data={data} choosevalue={this.state.choosevalue}/>
