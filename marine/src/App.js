@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import AppList from './AppList.js'
+import AppForm from './AppForm.js'
+import AppFooter from './AppFooter.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+    constructor(props) {
+        super(props);
+        //this.handlerClick = this.handlerClick.bind(this);
+        this.state = { choosevalue:1, data:props.data };
+    }
+
+    OnAddTodoItem(newItem){
+        let newData = this.state.data.concat(newItem);
+        this.setState({data:newData});
+    }
+
+    ChooseValue(id){
+        this.setState({choosevalue:id});
+    }
+
+    render(){
+        const { data } = this.state;
+
+        return (
+            <div className="ui comments">
+                <h1>My Todo List with React</h1>
+                <AppForm AddTodoItem={this.OnAddTodoItem.bind(this)}/>
+                <AppList data={data} choosevalue={this.state.choosevalue}/>
+                <AppFooter SubmitChooseValue={this.ChooseValue.bind(this)}/>
+            </div>
+        )
+    }
 }
 
-export default App;
+export default App
